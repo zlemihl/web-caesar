@@ -47,10 +47,10 @@ def index():
 			</style>
 		</head>
 		<body>
-			<form method="POST">
+			<form action="/encrypt" method="POST">
 				<label for="rot">Pick a Number</label>
-				<input name="rot" type="text" value="0" />
-				<textarea type="text" name="text"></textarea>
+				<input id="rotation" name="rot" type="text" value="0" />
+				<textarea type="text" name="message"></textarea>
 				<input type="submit">
 			</form>
 		</body>
@@ -58,8 +58,8 @@ def index():
 	return wc_form
 @app.route('/encrypt', methods=["POST"])
 def encrypt():
-	mess=str(request.wc_form['text'])
-	rott=int(request.wc_form['rot'])
+	mess=str(request.form['message'])
+	rott=int(request.form['rot'])
 	result=rotate_string(mess,rott)
 	return "<h1>"+result+"<h1>"
 
